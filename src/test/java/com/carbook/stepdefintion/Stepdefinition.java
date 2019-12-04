@@ -2,6 +2,7 @@ package com.carbook.stepdefintion;
 
 import java.io.File;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.rules.TestRule;
 import org.openqa.selenium.WebDriver;
@@ -17,10 +18,13 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class Stepdefinition extends BaseClass {
+	
+	
+   static Logger log = Logger.getLogger(Stepdefinition.class);
+
 
 	public static WebDriver driver = TestRunner.driver;
 	public static POM_Manager pom = new POM_Manager(driver);
-
 	@Given("^User should launch the car book application$")
 	public void user_should_launch_the_car_book_application() throws Throwable {
 		ConfigReader cr = new ConfigReader();
@@ -35,9 +39,17 @@ public class Stepdefinition extends BaseClass {
 	@Then("^User should verify the page title '(.*)'$")
 	public void user_should_verify_the_page_title_Carbook_Free_Bootstrap_Template_by_Colorlib(String arg1)
 			throws Throwable {
-		Assert.assertEquals(arg1, driver.getTitle());
-		File screenShot = screenShot("homepage");
-		Reporter.addScreenCaptureFromPath(screenShot.getAbsolutePath());
+		try {
+			Assert.assertEquals(arg1, driver.getTitle());
+			File screenShot = screenShot("homepage");
+			Reporter.addScreenCaptureFromPath(screenShot.getAbsolutePath());
+			log.info("Web page title is "+ driver.getTitle());
+			//System.out.println("Web page title is "+ driver.getTitle());
+		} catch (Exception e) {
+			log.fatal("Web page title is mismatched "+ driver.getTitle());
+			//System.out.println("Web page title is mismatched "+ driver.getTitle());
+		}
+		
 	}
 
 	@Then("^User should see Home Menu$")
