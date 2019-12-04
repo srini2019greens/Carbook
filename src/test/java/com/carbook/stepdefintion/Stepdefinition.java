@@ -1,5 +1,7 @@
 package com.carbook.stepdefintion;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.rules.TestRule;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +10,7 @@ import com.carbook.baseclass.BaseClass;
 import com.carbook.helper.ConfigReader;
 import com.carbook.helper.POM_Manager;
 import com.carbook.runner.TestRunner;
+import com.cucumber.listener.Reporter;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -33,6 +36,8 @@ public class Stepdefinition extends BaseClass {
 	public void user_should_verify_the_page_title_Carbook_Free_Bootstrap_Template_by_Colorlib(String arg1)
 			throws Throwable {
 		Assert.assertEquals(arg1, driver.getTitle());
+		File screenShot = screenShot("homepage");
+		Reporter.addScreenCaptureFromPath(screenShot.getAbsolutePath());
 	}
 
 	@Then("^User should see Home Menu$")

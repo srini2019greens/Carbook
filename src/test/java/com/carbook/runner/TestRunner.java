@@ -1,5 +1,7 @@
 package com.carbook.runner;
 
+import java.io.File;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -7,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.carbook.baseclass.BaseClass;
 import com.carbook.helper.ConfigReader;
+import com.cucumber.listener.Reporter;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -16,8 +19,7 @@ import cucumber.api.junit.Cucumber;
 		"com.cucumber.listener.ExtentCucumberFormatter:src\\test\\resource\\com\\carbook\\extentreport\\report.html",
 
 		"pretty",
-		"json:src\\test\\resource\\com\\carbook\\extentreport\\cucumber.json" },
-features = "src\\test\\java\\com\\carbook\\feature", glue = "com.carbook.stepdefintion", dryRun = false, strict = true, monochrome = true, tags = {
+		"json:src\\test\\resource\\com\\carbook\\extentreport\\cucumber.json" }, features = "src\\test\\java\\com\\carbook\\feature", glue = "com.carbook.stepdefintion", dryRun = false, strict = true, monochrome = true, tags = {
 				"@Carbook" })
 public class TestRunner {
 
@@ -32,5 +34,10 @@ public class TestRunner {
 	@AfterClass
 	public static void driverQuit() {
 		driver.quit();
+		Reporter.loadXMLConfig(new File(
+				System.getProperty("user.dir") + "\\src\\test\\resource\\com\\carbook\\config\\extent-config.xml"));
+
+		System.out.println(
+				System.getProperty("user.dir") + "\\src\\test\\resource\\com\\carbook\\config\\extent-config.xml");
 	}
 }

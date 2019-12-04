@@ -1,0 +1,5 @@
+com\carbook\helper\ConfigReader.class
+com\carbook\pom\HomePage.class
+com\carbook\baseclass\BaseClass.class
+com\carbook\pom\ContactPage.class
+com\carbook\helper\POM_Manager.class

@@ -164,7 +164,8 @@ public class BaseClass {
 	public static File screenShot(String filename) throws Throwable {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File screenshotAs = ts.getScreenshotAs(OutputType.FILE);
-		File dest = new File("\\src\\test\\resource\\com\\carbook\\extentreport\\screenshot\\" + filename + ".png");
+		File dest = new File(System.getProperty("user.dir")
+				+ "\\src\\test\\resource\\com\\carbook\\extentreport\\screenshot\\" + filename + ".png");
 		FileUtils.copyFile(screenshotAs, dest);
 		return dest;
 

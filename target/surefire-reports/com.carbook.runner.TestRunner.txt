@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.carbook.runner.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 28, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 48.787 s - in com.carbook.runner.TestRunner
